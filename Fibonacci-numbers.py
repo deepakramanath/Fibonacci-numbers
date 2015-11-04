@@ -17,17 +17,13 @@ import sys
 
 arg = sys.argv
 
-def fibonacci(n):
-	global Fn, Fn_1, count
-	Fn = 1.0
-	Fn_1 = 1.0
-	count = 2
+def fibonacci(n, Fn, Fn_1, count):
 	while True:
 		count = count + 1
 		Fn = Fn + Fn_1
 		Fn_1 = Fn - Fn_1
-		gR = Fn/Fn_1
-		FibonacciSequence.append(Fn)
+		gR = Fn/float(Fn_1)
+		FibonacciSequence.append(int(Fn))
 		goldenRatio.append(gR)
 		if count == n:
 			break
@@ -39,23 +35,27 @@ while len(arg) > 1:
 while True:
 	number = raw_input("Enter the number, n to obtain the Fibonacci Sequence: ")
 	try:
-		num = float(number)
+		num = int(number)
 		if num > 100:
 			print "Enter a value less or equal to 100"
 			continue
-		print "Your entered number is: %.1f\n" % (num)
+		print "Your entered number is: %d\n" % (num)
 		break
 	except:
 		print "Error:Enter only numbers"
 		continue
 
-FibonacciSequence = [1.0]
+FibonacciSequence = [1]
 goldenRatio = []
 
-fibonacci(num)
+iniFn = 1
+iniFn_1 = 1
+count = 2
+
+fibonacci(num, iniFn, iniFn_1, count)
 
 
-print "Fibonacci Sequence for the value n = %.1f\n" %(num)
+print "Fibonacci Sequence for the value n = %d\n" %(num)
 print FibonacciSequence
 print "\nGolden Ratio\n"
 print goldenRatio
