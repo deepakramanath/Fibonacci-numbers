@@ -3,7 +3,9 @@
 """
 Usage: Fibonacci-numbers.py
 
-Generates a Fibonacci sequence up to the given number (n)
+Generates a Fibonacci sequence up to the given number (n) and
+calculates the Golden Ratio
+
 At prompt, enter only numbers
 
 Options
@@ -16,13 +18,13 @@ Options
 from sys import argv, exit
 
 def fibonacci(n):
-	Fn_1, Fn = 0, 1
+	(Fn_1, Fn) = 0, 1
 	FibonacciSequence = [Fn_1, Fn]
-	goldenRatio = [None]
-	for i in range(n):
-		Fn_1, Fn = Fn, Fn_1+Fn
+	goldenRatio = []
+	for i in range(n-1):
+		(Fn_1, Fn) = Fn, (Fn_1 + Fn)
 		FibonacciSequence.append(Fn)
-		goldenRatio.append(float(Fn)/Fn_1)
+		goldenRatio.append(Fn/float(Fn_1))
 	return FibonacciSequence, goldenRatio
 
 if len(argv) > 1:
@@ -38,13 +40,13 @@ while True:
 			continue
 		print "The number you have entered is: %d" % num
 		break
-	except ValueError:
+	except:
 		print "Error: Enter only numbers"
 		continue
 
 FibonacciSequence, goldenRatio = fibonacci(num)
 
-print "Fibonacci Sequence for the value n = %d" % num
+print "\nFibonacci Sequence for the value, n = %d\n" % (num)
 print FibonacciSequence
 print "\nGolden Ratio\n"
 print goldenRatio
